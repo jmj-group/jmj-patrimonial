@@ -1,0 +1,103 @@
+/* JMJ · sistema común (ver WEBS/JMJ/DESIGN.md). Solo cambia --accent por web. */
+@font-face{font-family:"Newsreader";src:url(fonts/newsreader-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Newsreader";src:url(fonts/newsreader-500.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Newsreader";src:url(fonts/newsreader-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/plex-sans-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/plex-sans-500.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+
+:root{
+  --paper:#F6F3EE; --paper-2:#EDE8E0; --ink:#1C1B19; --ink-muted:#5E5A53; --line:#D9D1C4;
+  --accent:#173E36; --accent-hover:#10302A; --accent-ink:#FFFFFF;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --wrap:72rem; --gutter:clamp(1.25rem,4vw,2.5rem); --section:clamp(4rem,2rem + 8vw,8rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.6;font-size-adjust:from-font}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:.22em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;z-index:10;background:var(--ink);color:var(--paper);padding:.5rem 1rem}
+
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.1;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.5rem,1.6rem + 3.6vw,4.5rem);line-height:1.04}
+h2{font-size:clamp(2rem,1.5rem + 2vw,3rem)}
+h3{font-size:1.5rem;line-height:1.2;font-weight:500}
+p{margin:0;text-wrap:pretty}
+em{font-family:var(--serif);font-style:italic}
+.eyebrow{font-size:.8125rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted)}
+.lead{font-size:1.25rem;line-height:1.5;color:var(--ink-muted);max-width:34rem}
+
+/* Cabecera */
+.site-header{border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:5.5rem}
+.brand{display:inline-flex}
+.brand img{height:3rem;width:auto}
+@media (min-width:48rem){.brand img{height:3.75rem}}
+.nav a{color:var(--ink);font-weight:500;text-decoration:none}
+.nav a:hover{text-decoration:underline}
+
+/* Portada */
+.hero{padding-block:clamp(3rem,2rem + 5vw,6rem) var(--section)}
+.hero .wrap{display:grid;gap:3rem;align-items:center}
+.hero h1{margin-top:1.25rem}
+.hero .lead{margin-top:1.5rem}
+.hero figure{margin:0}
+.hero figure img{width:100%;aspect-ratio:5/4;object-fit:cover;filter:saturate(.9)}
+@media (min-width:56rem){.hero .wrap{grid-template-columns:1fr 1fr;gap:4.5rem}}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.75rem;margin-top:2.5rem}
+.btn{display:inline-flex;align-items:center;min-height:3rem;padding:0 1.5rem;border-radius:2px;background:var(--accent);color:var(--accent-ink);font-weight:500;text-decoration:none}
+.btn:hover{background:var(--accent-hover)}
+.link-quiet{color:var(--ink);font-weight:500}
+
+/* Secciones */
+.section{padding-block:var(--section);border-top:1px solid var(--line)}
+.split{display:grid;gap:2.5rem}
+@media (min-width:56rem){.split{grid-template-columns:4fr 7fr;gap:4rem}}
+.split > header p{margin-top:1.25rem;color:var(--ink-muted);max-width:24rem}
+.services{list-style:none;margin:0;padding:0}
+.services li{display:grid;grid-template-columns:3.5rem 1fr;gap:.375rem 1rem;padding-block:1.75rem;border-top:1px solid var(--line)}
+.services li:last-child{border-bottom:1px solid var(--line)}
+.services .num{grid-row:span 2;font-family:var(--serif);font-size:1.5rem;line-height:1.2;color:var(--accent)}
+.services p{color:var(--ink-muted);max-width:36rem}
+
+.band{background:var(--paper-2)}
+.brands{display:grid;gap:1px;margin-top:3rem;background:var(--line);border:1px solid var(--line)}
+@media (min-width:48rem){.brands{grid-template-columns:1fr 1fr}}
+.brand-item{display:flex;flex-direction:column;gap:1rem;padding:clamp(1.75rem,1rem + 3vw,3rem);background:var(--paper);color:var(--ink);text-decoration:none}
+.brand-item:hover .go{text-decoration:underline}
+.brand-item p{color:var(--ink-muted);max-width:28rem}
+.brand-item .go{margin-top:auto;padding-top:1rem;color:var(--accent);font-weight:500}
+.wm{font-size:1.75rem;line-height:1}
+.wm-belmore{font-family:var(--serif);font-weight:500;letter-spacing:.18em}
+.wm-mommy{font-family:var(--sans);font-weight:500;letter-spacing:.06em;color:#463B30}
+
+.statement .wrap{display:grid;gap:2rem;align-items:end}
+@media (min-width:56rem){.statement .wrap{grid-template-columns:8fr 4fr;gap:4rem}}
+.statement p{margin-top:1.25rem;color:var(--ink-muted);max-width:34rem}
+
+/* Pie */
+.site-footer{border-top:1px solid var(--line);padding-block:var(--section) 2.5rem}
+.site-footer .top{display:grid;gap:2.5rem}
+@media (min-width:56rem){.site-footer .top{grid-template-columns:7fr 5fr;gap:4rem;align-items:end}}
+.mail{display:inline-block;max-width:100%;margin-top:1rem;font-family:var(--serif);font-size:clamp(1.375rem,1rem + 2vw,2.75rem);line-height:1.15;color:var(--ink);overflow-wrap:anywhere}
+.address{font-style:normal;color:var(--ink-muted)}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem 2rem;margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.875rem;color:var(--ink-muted)}
+.legal ul{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;list-style:none;margin:0;padding:0}
+.legal a{color:var(--ink-muted)}
+
+/* Páginas legales */
+.prose{max-width:42rem;padding-block:clamp(3rem,2rem + 4vw,5rem)}
+.prose h1{font-size:clamp(2rem,1.5rem + 2vw,3rem)}
+.prose h2{font-size:1.375rem;font-weight:500;margin-top:2.5rem}
+.prose p,.prose ul{margin-top:1rem}
+.prose li{margin-top:.375rem}
+.prose .back{display:inline-block;margin-bottom:2rem;font-weight:500}
+
+.brand-logo{height:8.5rem;width:auto;align-self:flex-start}
+.brand-logo-wide{height:5.5rem;margin-block:1.25rem}
+.statement .note{margin-top:1.5rem;font-size:.875rem;color:var(--ink-muted);max-width:34rem}
