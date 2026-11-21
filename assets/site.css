@@ -1,4 +1,4 @@
-/* JMJ · sistema común (ver WEBS/JMJ/DESIGN.md). Solo cambia --accent por web. */
+/* JMJ · sistema común v2 (ver WEBS/JMJ/DESIGN.md). Cada web cambia solo el bloque de variables de marca. */
 @font-face{font-family:"Newsreader";src:url(fonts/newsreader-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Newsreader";src:url(fonts/newsreader-500.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
 @font-face{font-family:"Newsreader";src:url(fonts/newsreader-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
@@ -6,98 +6,131 @@
 @font-face{font-family:"IBM Plex Sans";src:url(fonts/plex-sans-500.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
 
 :root{
-  --paper:#F6F3EE; --paper-2:#EDE8E0; --ink:#1C1B19; --ink-muted:#5E5A53; --line:#D9D1C4;
-  --accent:#173E36; --accent-hover:#10302A; --accent-ink:#FFFFFF;
+  --brand:#173E36; --brand-deep:#0F2B25; --brand-hover:#10302A;
+  --second:#C9A86A; --second-hover:#D8BC86;
+  --tint:#E7EDE8; --paper:#F6F4EE;
+  --ink:#1C1B19; --ink-muted:#5E5A53; --line:rgba(28,27,25,.14); --on-brand:#F7F2EC; --on-brand-muted:rgba(247,242,236,.78);
   --serif:"Newsreader",Georgia,"Times New Roman",serif;
   --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --wrap:72rem; --gutter:clamp(1.25rem,4vw,2.5rem); --section:clamp(4rem,2rem + 8vw,8rem);
+  --wrap:74rem; --gutter:clamp(1.25rem,4vw,2.75rem); --section:clamp(4.5rem,2.5rem + 8vw,8.5rem);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.6;font-size-adjust:from-font}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.65;font-size-adjust:from-font}
 img{display:block;max-width:100%;height:auto}
-a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:.22em}
+a{color:var(--brand);text-decoration-thickness:1px;text-underline-offset:.22em}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.top :focus-visible,.statement :focus-visible,.site-footer :focus-visible{outline-color:var(--second)}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:1rem;top:1rem;z-index:10;background:var(--ink);color:var(--paper);padding:.5rem 1rem}
 
-h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.1;letter-spacing:-.01em;margin:0;text-wrap:balance}
-h1{font-size:clamp(2.5rem,1.6rem + 3.6vw,4.5rem);line-height:1.04}
-h2{font-size:clamp(2rem,1.5rem + 2vw,3rem)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.012em;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.75rem,1.6rem + 4.4vw,5.25rem);line-height:1.02}
+h2{font-size:clamp(2.1rem,1.5rem + 2.2vw,3.25rem)}
 h3{font-size:1.5rem;line-height:1.2;font-weight:500}
 p{margin:0;text-wrap:pretty}
-em{font-family:var(--serif);font-style:italic}
-.eyebrow{font-size:.8125rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted)}
-.lead{font-size:1.25rem;line-height:1.5;color:var(--ink-muted);max-width:34rem}
+em{font-style:italic}
+.eyebrow{display:flex;align-items:center;gap:.875rem;font-size:.8125rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted)}
+.eyebrow::before{content:"";width:2.25rem;height:1px;background:currentColor}
+.lead{font-size:1.25rem;line-height:1.55;max-width:34rem}
 
-/* Cabecera */
-.site-header{border-bottom:1px solid var(--line)}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:5.5rem}
+/* Botones */
+.btn{display:inline-flex;align-items:center;min-height:3.125rem;padding:0 1.625rem;border-radius:2px;background:var(--brand);color:var(--on-brand);font-weight:500;text-decoration:none;letter-spacing:.01em}
+.btn:hover{background:var(--brand-hover)}
+.btn-second,.top .btn-second{background:var(--second);color:var(--brand-deep)}
+.btn-second:hover{background:var(--second-hover)}
+.link-quiet{font-weight:500}
+
+/* Cabecera y portada sobre el color de la marca */
+.top{background:var(--brand);color:var(--on-brand)}
+.hero.top{background:radial-gradient(circle at 88% 105%,rgba(255,255,255,.09),transparent 42%),var(--brand)}
+.top a{color:var(--on-brand)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:6rem}
 .brand{display:inline-flex}
 .brand img{height:3rem;width:auto}
 @media (min-width:48rem){.brand img{height:3.75rem}}
-.nav a{color:var(--ink);font-weight:500;text-decoration:none}
-.nav a:hover{text-decoration:underline}
+.nav a{font-weight:500;text-decoration:none;padding-block:.5rem;border-bottom:1px solid transparent}
+.nav a:hover{border-bottom-color:currentColor}
 
-/* Portada */
-.hero{padding-block:clamp(3rem,2rem + 5vw,6rem) var(--section)}
-.hero .wrap{display:grid;gap:3rem;align-items:center}
-.hero h1{margin-top:1.25rem}
-.hero .lead{margin-top:1.5rem}
-.hero figure{margin:0}
-.hero figure img{width:100%;aspect-ratio:5/4;object-fit:cover;filter:saturate(.9)}
-@media (min-width:56rem){.hero .wrap{grid-template-columns:1fr 1fr;gap:4.5rem}}
+.hero{padding-block:clamp(2.5rem,1.5rem + 4vw,5rem) 0}
+.hero .wrap{position:relative;z-index:1;display:grid;gap:3rem;align-items:center}
+.hero .eyebrow{color:var(--second)}
+.hero h1{margin-top:1.5rem;color:var(--on-brand)}
+.hero h1 em{color:var(--second)}
+.hero .lead{margin-top:1.75rem;color:var(--on-brand-muted)}
 .actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.75rem;margin-top:2.5rem}
-.btn{display:inline-flex;align-items:center;min-height:3rem;padding:0 1.5rem;border-radius:2px;background:var(--accent);color:var(--accent-ink);font-weight:500;text-decoration:none}
-.btn:hover{background:var(--accent-hover)}
-.link-quiet{color:var(--ink);font-weight:500}
+.hero figure{position:relative;margin:0 0 -5rem;padding:1.25rem}
+.hero figure img{position:relative;width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+/* Esquinas del logo alrededor de la foto */
+.corners::before,.corners::after{content:"";position:absolute;width:38%;height:38%;border:1.5px solid var(--second);pointer-events:none}
+.corners::before{top:0;left:0;border-right:0;border-bottom:0}
+.corners::after{right:0;bottom:0;border-left:0;border-top:0}
+.hero .spacer{height:clamp(3rem,2rem + 4vw,6rem)}
+@media (min-width:56rem){
+  .hero .wrap{grid-template-columns:7fr 5fr;gap:5rem;align-items:end}
+  .hero .copy{padding-bottom:7rem}
+  .hero figure{margin-bottom:-7rem}
+  .hero .spacer{display:none}
+}
 
 /* Secciones */
-.section{padding-block:var(--section);border-top:1px solid var(--line)}
+.section{padding-block:var(--section)}
+.first{padding-top:calc(var(--section) + 5rem)}
+@media (min-width:56rem){.first{padding-top:calc(var(--section) + 6rem)}}
 .split{display:grid;gap:2.5rem}
-@media (min-width:56rem){.split{grid-template-columns:4fr 7fr;gap:4rem}}
+@media (min-width:56rem){.split{grid-template-columns:4fr 8fr;gap:4.5rem}}
 .split > header p{margin-top:1.25rem;color:var(--ink-muted);max-width:24rem}
-.services{list-style:none;margin:0;padding:0}
-.services li{display:grid;grid-template-columns:3.5rem 1fr;gap:.375rem 1rem;padding-block:1.75rem;border-top:1px solid var(--line)}
-.services li:last-child{border-bottom:1px solid var(--line)}
-.services .num{grid-row:span 2;font-family:var(--serif);font-size:1.5rem;line-height:1.2;color:var(--accent)}
-.services p{color:var(--ink-muted);max-width:36rem}
+.split > header h2 em{color:var(--brand)}
+.services{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:40rem){.services{grid-template-columns:1fr 1fr}}
+.services li{display:flex;flex-direction:column;gap:.625rem;padding:clamp(1.5rem,1rem + 2vw,2.5rem);background:var(--paper);transition:background .25s}
+.services li:hover{background:var(--tint)}
+@media (min-width:40rem){.services li:last-child:nth-child(odd){grid-column:span 2}}
+.services .num{font-family:var(--serif);font-style:italic;font-size:2.5rem;line-height:1;color:var(--brand)}
+.services h3{margin-top:.5rem}
+.services p{color:var(--ink-muted)}
 
-.band{background:var(--paper-2)}
-.brands{display:grid;gap:1px;margin-top:3rem;background:var(--line);border:1px solid var(--line)}
+.band{background:var(--tint)}
+.band h2 em{color:var(--brand)}
+.brands{display:grid;gap:1.5rem;margin-top:3rem}
 @media (min-width:48rem){.brands{grid-template-columns:1fr 1fr}}
-.brand-item{display:flex;flex-direction:column;gap:1rem;padding:clamp(1.75rem,1rem + 3vw,3rem);background:var(--paper);color:var(--ink);text-decoration:none}
+.brand-item{position:relative;display:flex;flex-direction:column;gap:1rem;padding:clamp(1.75rem,1rem + 3vw,3rem);background:var(--paper);color:var(--ink);text-decoration:none;box-shadow:0 1px 0 var(--line)}
 .brand-item:hover .go{text-decoration:underline}
 .brand-item p{color:var(--ink-muted);max-width:28rem}
-.brand-item .go{margin-top:auto;padding-top:1rem;color:var(--accent);font-weight:500}
-.wm{font-size:1.75rem;line-height:1}
-.wm-belmore{font-family:var(--serif);font-weight:500;letter-spacing:.18em}
-.wm-mommy{font-family:var(--sans);font-weight:500;letter-spacing:.06em;color:#463B30}
+.brand-item .go{margin-top:auto;padding-top:1rem;color:var(--brand);font-weight:500}
+.brand-logo{height:8.5rem;width:auto;align-self:flex-start}
+.brand-logo-wide{height:5.5rem;margin-block:1.25rem}
 
-.statement .wrap{display:grid;gap:2rem;align-items:end}
+/* Bloque final sobre la marca */
+.statement{background:var(--brand-deep);color:var(--on-brand)}
+.statement .wrap{display:grid;gap:2.5rem;align-items:end}
 @media (min-width:56rem){.statement .wrap{grid-template-columns:8fr 4fr;gap:4rem}}
-.statement p{margin-top:1.25rem;color:var(--ink-muted);max-width:34rem}
+.statement .box{position:relative;padding:clamp(1.5rem,1rem + 2vw,2.75rem)}
+.statement h2{font-style:italic;color:var(--on-brand)}
+.statement p{margin-top:1.25rem;color:var(--on-brand-muted);max-width:34rem}
+.statement .note{margin-top:1.5rem;font-size:.875rem;color:var(--on-brand-muted);max-width:34rem}
 
 /* Pie */
-.site-footer{border-top:1px solid var(--line);padding-block:var(--section) 2.5rem}
-.site-footer .top{display:grid;gap:2.5rem}
-@media (min-width:56rem){.site-footer .top{grid-template-columns:7fr 5fr;gap:4rem;align-items:end}}
-.mail{display:inline-block;max-width:100%;margin-top:1rem;font-family:var(--serif);font-size:clamp(1.375rem,1rem + 2vw,2.75rem);line-height:1.15;color:var(--ink);overflow-wrap:anywhere}
-.address{font-style:normal;color:var(--ink-muted)}
-.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem 2rem;margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.875rem;color:var(--ink-muted)}
+.site-footer{background:var(--brand);color:var(--on-brand);padding-block:var(--section) 2.5rem}
+.site-footer a{color:var(--on-brand)}
+.site-footer .row{display:grid;gap:2.5rem}
+@media (min-width:56rem){.site-footer .row{grid-template-columns:7fr 5fr;gap:4rem;align-items:end}}
+.site-footer .eyebrow{color:var(--second)}
+.mail{display:inline-block;max-width:100%;margin-top:1rem;font-family:var(--serif);font-size:clamp(1.25rem,.9rem + 1.9vw,2.25rem);line-height:1.2;text-decoration:none;overflow-wrap:anywhere;border-bottom:1px solid var(--second)}
+.mail:hover{color:var(--second)}
+.address{font-style:normal;color:var(--on-brand-muted)}
+.foot-logo{height:2.75rem;width:auto;margin-bottom:1.5rem;opacity:.95}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem 2rem;margin-top:4rem;padding-top:1.5rem;border-top:1px solid rgba(247,242,236,.22);font-size:.875rem;color:var(--on-brand-muted)}
 .legal ul{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;list-style:none;margin:0;padding:0}
-.legal a{color:var(--ink-muted)}
+.legal a{color:var(--on-brand-muted)}
 
 /* Páginas legales */
 .prose{max-width:42rem;padding-block:clamp(3rem,2rem + 4vw,5rem)}
-.prose h1{font-size:clamp(2rem,1.5rem + 2vw,3rem)}
+.prose h1{font-size:clamp(2rem,1.5rem + 2vw,3rem);color:var(--brand)}
 .prose h2{font-size:1.375rem;font-weight:500;margin-top:2.5rem}
 .prose p,.prose ul{margin-top:1rem}
 .prose li{margin-top:.375rem}
 .prose .back{display:inline-block;margin-bottom:2rem;font-weight:500}
-
-.brand-logo{height:8.5rem;width:auto;align-self:flex-start}
-.brand-logo-wide{height:5.5rem;margin-block:1.25rem}
-.statement .note{margin-top:1.5rem;font-size:.875rem;color:var(--ink-muted);max-width:34rem}
+.prose .eyebrow::before{display:none}
